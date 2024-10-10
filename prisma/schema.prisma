@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Users {
+  id       String   @id @default(cuid())
+  name     String
+  email    String   @unique
+  password String // we will hash this later
+  created  DateTime @default(now())
+  updated  DateTime @updatedAt
+
+  streaks Streaks[]
+}
+
+model Streaks {
+  id     String  @id @default(cuid())
+  userId String? // id of the user
+  type   String // time, count, quanity, check
+  streak Int     @default(0) // number of streaks
+
+  totalCount Int? // total count of count 
+
+  unit String? // unit used for quanity and count 
+
+  totalQuantity Int? // total quantity
+
+  totalTime   Int? // stores all the time in seconds
+  reportType  String? // the way you want to report the time HH:MM:SS or MM:SS or Ss or start and end time
+  totalInputs Int? // calculating average time per input
+
+  isComplete Boolean @default(false) // if the streak is complete or not
+
+  created DateTime @default(now())
+  updated DateTime @updatedAt // if the streak is we will need to update the streak based on it being complete or not within the 24 hour time frame
+  Users   Users?   @relation(fields: [userId], references: [id])
+}
