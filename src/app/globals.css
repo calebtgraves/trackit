@@ -27,3 +27,35 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari, and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+@layer utilities {
+  .text-shadow-1 {
+    text-shadow:
+      1px 1px 0 black,
+      -1px 1px 0 black,
+      1px -1px 0 black,
+      -1px -1px 0 black;
+  }
+}
+@layer utilities {
+  .text-shadow-2 {
+    text-shadow:
+      1px 1px 0 white,
+      -1px 1px 0 white,
+      1px -1px 0 white,
+      -1px -1px 0 white;
+  }
+}

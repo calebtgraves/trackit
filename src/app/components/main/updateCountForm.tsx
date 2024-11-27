@@ -55,7 +55,7 @@ export default function UpdateCount({
   };
 
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='mb-4 flex flex-col items-center justify-center'>
       {showBanner && (
         <div className='absolute top-0 w-full justify-center rounded-xl border-4 border-green-900 bg-green-500 p-4'>
           <div className='flex flex-row items-center justify-center'>
@@ -70,25 +70,32 @@ export default function UpdateCount({
           </div>
         </div>
       )}
-      <form ref={formRef} onSubmit={update}>
+      <form ref={formRef} onSubmit={update} className='size-full'>
         {/*stores the id of the streak being updated*/}
         <div className='flex flex-col items-center justify-center'>
           <input type='hidden' name='id' value={streakId} />
           <input type='hidden' name='totalCount' value={totalCount} />
           <input type='hidden' name='unit' value={unit} />
-
-          <h3 className='text-center text-2xl'>Total</h3>
-          <div className='flex w-full flex-row items-center justify-center gap-1'>
-            <h4 className='text-center text-2xl'>{`${total}`}</h4>
-            <h4 className='text-center text-2xl'>{`${unit}`}</h4>
+          <div className='flex w-full flex-col pb-4'>
+            <h3 className='text-center font-title text-xl'>Total</h3>
+            <div className='flex w-full flex-row items-center justify-center gap-1'>
+              <h4 className='text-center text-2xl'>{`${total}`}</h4>
+              <h4 className='text-center text-2xl'>{`${unit} Counted`}</h4>
+            </div>
           </div>
           <div className='flex flex-col items-center justify-center'>
-            <label htmlFor='addedCount'>Enter today&apos;s Count</label>
+            <label
+              className='pb-2 text-center font-title text-xl'
+              htmlFor='addedCount'
+            >
+              Enter Today&apos;s Count
+            </label>
             <input
               type='number'
+              min={0}
               name='addedCount'
               id='addedCount'
-              className='rounded-lg bg-slate-300 p-2'
+              className='rounded-lg border border-purple-700 bg-slate-300 p-2 text-black shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
               ref={addedCountRef}
               required
             />

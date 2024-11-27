@@ -55,7 +55,7 @@ export default function UpdateCheck({
   };
 
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='mb-4 flex flex-col items-center justify-center'>
       {showBanner && (
         <div className='absolute bottom-0 w-full justify-center rounded-xl border-4 border-green-900 bg-green-500 px-4 py-6'>
           <div className='flex flex-row items-center justify-center'>

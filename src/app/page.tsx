@@ -11,11 +11,16 @@ export default async function Home() {
     return redirect('/login');
   }
   return (
-    <div className='flex h-full flex-col'>
+    <div className='grid max-h-screen min-h-dvh w-full grid-cols-1 grid-rows-10'>
       {/* Navbar/header */}
-      <Nav />
+      <div className='row-span-1 size-full'>
+        <Nav />
+      </div>
+
       {/* page Content */}
-      <Main />
+      <div className='row-span-9 size-full'>
+        <Main />
+      </div>
     </div>
   );
 }

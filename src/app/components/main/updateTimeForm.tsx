@@ -91,7 +91,7 @@ export default function UpdateTime({
   };
 
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='flex w-full flex-col items-center justify-center'>
       {showBanner && (
         <div className='absolute top-0 w-full justify-center rounded-xl border-4 border-green-900 bg-green-500 p-4'>
           <div className='flex flex-row items-center justify-center'>
@@ -106,32 +106,71 @@ export default function UpdateTime({
           </div>
         </div>
       )}
-      <form ref={formRef} onSubmit={update}>
+      <form ref={formRef} onSubmit={update} className='size-full'>
         <input type='hidden' name='streakId' value={streakId} />
         <input type='hidden' name='timeInSeconds' value={timeInSeconds} />
         <input type='hidden' name='reportType' value={reportType} readOnly />
         <input type='hidden' name='timeInputs' value={timeInputs} readOnly />
-
-        <h4 className='text-center text-xl'>Average Time</h4>
-        <div className='flex w-full flex-row justify-center space-x-2'>
-          <h4>{formatAverageTime()}</h4>
+        <div className='flex w-full flex-col pb-4'>
+          <h4 className='text-center font-title text-xl'>Average Time</h4>
+          <div className='flex w-full flex-row justify-center space-x-2 pt-2'>
+            <h4>{formatAverageTime()}</h4>
+          </div>
         </div>
         <div className='flex w-full flex-col'>
-          <h4 className='text-center text-xl'>Enter today&apos;s time</h4>
+          <h4 className='pb-4 text-center font-title text-xl'>
+            Enter today&apos;s time
+          </h4>
 
           {inputType === 'hours' ? (
-            <div className='flex flex-row justify-evenly space-x-2'>
-              <input type='text' name='hours' placeholder='Hours' />
-              <input type='text' name='minutes' placeholder='Mins' />
-              <input type='text' name='seconds' placeholder='Secs' />
+            <div className='flex flex-row justify-evenly space-x-2 pb-4'>
+              <input
+                type='number'
+                min={0}
+                name='hours'
+                placeholder='Hours'
+                className='w-1/3 rounded-lg border border-purple-700 bg-slate-300 p-2 text-black shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+              />
+              <input
+                type='number'
+                min={0}
+                name='minutes'
+                placeholder='Mins'
+                className='w-1/3 rounded-lg border border-purple-700 bg-slate-300 p-2 text-black shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+              />
+              <input
+                type='number'
+                min={0}
+                name='seconds'
+                placeholder='Secs'
+                className='w-1/3 rounded-lg border border-purple-700 bg-slate-300 p-2 text-black shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+              />
             </div>
           ) : inputType === 'minutes' ? (
             <div className='flex flex-row justify-evenly space-x-2'>
-              <input type='text' name='minutes' placeholder='Mins' />
-              <input type='text' name='seconds' placeholder='Secs' />
+              <input
+                type='number'
+                min={0}
+                name='minutes'
+                placeholder='Mins'
+                className='w-1/3 rounded-lg border border-purple-700 bg-slate-300 p-2 text-black shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+              />
+              <input
+                type='number'
+                min={0}
+                name='seconds'
+                placeholder='Secs'
+                className='w-1/3 rounded-lg border border-purple-700 bg-slate-300 p-2 text-black shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+              />
             </div>
           ) : inputType === 'seconds' ? (
-            <input type='text' name='seconds' placeholder='Seconds' />
+            <input
+              type='number'
+              min={0}
+              name='seconds'
+              placeholder='Seconds'
+              className='mx-auto w-1/2 rounded-lg border border-purple-700 bg-slate-300 p-2 text-black shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+            />
           ) : (
             <div className='flex w-full flex-col justify-center space-x-2'>
               <div>
@@ -149,3 +188,132 @@ export default function UpdateTime({
     </div>
   );
 }
+
+// return (
+//   <div className='flex w-full flex-col items-center justify-center bg-gradient-to-bl from-purple-600 to-purple-800 p-4'>
+//     {showBanner && (
+//       <div className='absolute top-0 flex w-full justify-center rounded-xl border-4 border-green-900 bg-green-500 p-4 shadow-md'>
+//         <div className='flex flex-row items-center justify-center'>
+//           <h3 className='text-center text-xl font-semibold text-white'>
+//             Updated Count
+//           </h3>
+//           <Image
+//             src={'/streakFire.svg'}
+//             width={20}
+//             height={20}
+//             alt='logo'
+//             className='ml-2'
+//           />
+//         </div>
+//       </div>
+//     )}
+
+//     <form
+//       ref={formRef}
+//       onSubmit={update}
+//       className='w-full max-w-lg rounded-lg bg-purple-900 p-6 shadow-lg'
+//     >
+//       {/* Hidden Inputs */}
+//       <input type='hidden' name='streakId' value={streakId} />
+//       <input type='hidden' name='timeInSeconds' value={timeInSeconds} />
+//       <input type='hidden' name='reportType' value={reportType} readOnly />
+//       <input type='hidden' name='timeInputs' value={timeInputs} readOnly />
+
+//       {/* Average Time Display */}
+//       <h4 className='mb-4 text-center text-xl font-semibold text-purple-200'>
+//         Average Time
+//       </h4>
+//       <div className='mb-6 flex w-full flex-row justify-center space-x-2'>
+//         <h4 className='text-lg font-medium text-white'>
+//           {formatAverageTime()}
+//         </h4>
+//       </div>
+
+//       {/* Today's Time Input */}
+//       <div className='mb-6 flex w-full flex-col'>
+//         <h4 className='mb-4 text-center text-xl font-semibold text-purple-200'>
+//           Enter Today&apos;s Time
+//         </h4>
+
+//         {inputType === 'hours' ? (
+//           <div className='flex flex-row justify-between space-x-4'>
+//             <input
+//               type='text'
+//               name='hours'
+//               placeholder='Hours'
+//               className='w-1/3 rounded-md border border-purple-700 bg-purple-800 p-3 text-white shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+//             />
+//             <input
+//               type='text'
+//               name='minutes'
+//               placeholder='Minutes'
+//               className='w-1/3 rounded-md border border-purple-700 bg-purple-800 p-3 text-white shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+//             />
+//             <input
+//               type='text'
+//               name='seconds'
+//               placeholder='Seconds'
+//               className='w-1/3 rounded-md border border-purple-700 bg-purple-800 p-3 text-white shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+//             />
+//           </div>
+//         ) : inputType === 'minutes' ? (
+//           <div className='flex flex-row justify-between space-x-4'>
+//             <input
+//               type='text'
+//               name='minutes'
+//               placeholder='Minutes'
+//               className='w-1/2 rounded-md border border-purple-700 bg-purple-800 p-3 text-white shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+//             />
+//             <input
+//               type='text'
+//               name='seconds'
+//               placeholder='Seconds'
+//               className='w-1/2 rounded-md border border-purple-700 bg-purple-800 p-3 text-white shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+//             />
+//           </div>
+//         ) : inputType === 'seconds' ? (
+//           <input
+//             type='text'
+//             name='seconds'
+//             placeholder='Seconds'
+//             className='w-full rounded-md border border-purple-700 bg-purple-800 p-3 text-white shadow-sm placeholder:text-purple-400 focus:outline-none focus:ring focus:ring-purple-500'
+//           />
+//         ) : (
+//           <div className='flex flex-col items-center space-y-4'>
+//             <div>
+//               <h1 className='text-center font-medium text-purple-200'>
+//                 Start Time
+//               </h1>
+//               <TimeScrollWheel onTimeSelect={handleTimeSelect} />
+//             </div>
+//             <div>
+//               <h1 className='text-center font-medium text-purple-200'>
+//                 End Time
+//               </h1>
+//               <TimeScrollWheel onTimeSelect={handleTimeSelect} />
+//             </div>
+//           </div>
+//         )}
+//       </div>
+
+//       {/* Buttons */}
+//       <div className='flex justify-between space-x-4'>
+//         <button
+//           type='submit'
+//           className='w-1/2 rounded-md bg-green-500 p-3 text-lg font-bold text-black shadow-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300'
+//         >
+//           Submit
+//         </button>
+//         <button
+//           onClick={(e) => {
+//             e.preventDefault();
+//             window.history.back();
+//           }}
+//           className='w-1/2 rounded-md bg-red-500 p-3 text-lg font-bold text-white shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300'
+//         >
+//           Cancel
+//         </button>
+//       </div>
+//     </form>
+//   </div>
+// );

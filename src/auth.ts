@@ -62,7 +62,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     strategy: 'jwt',
   },
   providers,
-  // trustHost: true,
+  trustHost: true,
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user) {

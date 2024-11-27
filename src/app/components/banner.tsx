@@ -22,7 +22,7 @@ export default function Banner() {
   }, []);
 
   return (
-    <div className='mb-10 mt-5 flex w-full items-center justify-center px-[5%]'>
+    <div className='mb-10 mt-5 flex w-full items-center justify-center'>
       {isLoading ? (
         <div className='my-auto flex w-full flex-col items-center justify-center rounded-xl bg-white shadow-lg'>
           <h1 className='text-center text-5xl font-bold text-purple-900 sm:text-3xl md:text-4xl'>

@@ -19,65 +19,78 @@ export default function CreateCheckPage() {
     router.push('/create/planned');
   };
   return (
-    <div className='flex h-full flex-col'>
+    <div className='flex h-screen flex-col bg-gradient-to-bl from-purple-600 to-purple-800'>
       <CreateBanner
         src={'/check.svg'}
         color={'bg-green-500'}
         backgroundColor={'border-b-green-900 border-b-4'}
         text={'New Check It Streak'}
       />
-      <form onSubmit={handleSubmit} className='mx-auto size-full text-black'>
-        <div className='grid h-full grid-cols-2 grid-rows-4 gap-10 py-5'>
-          {/* Holds the userId for the streak to record it*/}
-          <input type='hidden' name='userId' value={userId} />
-          <input type='hidden' name='type' value={'check'} />
-          {/* Holds the name of the streak */}
-          <div className='col-span-2 row-span-1 m-auto flex h-full w-11/12 flex-col'>
-            <label htmlFor='name' className='text-3xl text-white'>
-              Name your Streak
-            </label>
-            <input
-              type='text'
-              name='name'
-              className='rounded-md py-5 text-3xl shadow-lg'
-            />
-          </div>
+      <div className='mx-auto flex h-full flex-col p-4 sm:w-full md:w-3/4 lg:w-1/2'>
+        <form
+          onSubmit={handleSubmit}
+          className='mx-auto flex h-full flex-col gap-5 rounded-lg bg-purple-900 p-6 shadow-lg'
+        >
+          <div className='grid h-full grid-cols-2 grid-rows-4 gap-5'>
+            {/* Hidden Inputs */}
+            <input type='hidden' name='userId' value={userId} />
+            <input type='hidden' name='type' value={'check'} />
 
-          <div className='col-span-2 row-span-2 m-auto flex h-full w-11/12 flex-col'>
-            <label htmlFor='goal' className='text-3xl text-white'>
-              Record your goal
-            </label>
-            <textarea
-              name='goal'
-              rows={10}
-              cols={50}
-              defaultValue={''}
-              className='rounded-md text-3xl shadow-lg'
-              style={{ resize: 'none' }}
-            />
-          </div>
+            {/* Name Input */}
+            <div className='col-span-2 row-span-1 flex flex-col gap-2'>
+              <label
+                htmlFor='name'
+                className='text-2xl font-semibold text-purple-200'
+              >
+                Name your Streak
+              </label>
+              <input
+                type='text'
+                name='name'
+                className='rounded-md border border-purple-700 bg-purple-800 p-4 text-lg text-purple-200 shadow-sm focus:outline-none focus:ring focus:ring-purple-500'
+              />
+            </div>
 
-          <div className='col-span-1 my-auto'>
-            <button
-              type='submit'
-              className='ml-[5%] w-11/12 rounded-md border-b-[5px] border-r-4 border-b-[#95AFBA] border-r-[#95AFBA] bg-green-500 p-2 py-8 text-2xl'
-            >
-              Start Streak
-            </button>
+            {/* Goal Textarea */}
+            <div className='col-span-2 row-span-2 flex flex-col gap-2'>
+              <label
+                htmlFor='goal'
+                className='text-2xl font-semibold text-purple-200'
+              >
+                Record your goal
+              </label>
+              <textarea
+                name='goal'
+                rows={5}
+                cols={50}
+                defaultValue={''}
+                className='resize-none rounded-md border border-purple-700 bg-purple-800 p-4 text-lg text-purple-200 shadow-sm focus:outline-none focus:ring focus:ring-purple-500'
+              />
+            </div>
+
+            {/* Buttons */}
+            <div className='col-span-1 my-auto'>
+              <button
+                type='submit'
+                className='w-full rounded-md bg-[#C084FC] p-3 text-lg font-bold text-purple-900 hover:bg-purple-700 focus:outline-none focus:ring focus:ring-purple-400'
+              >
+                Start It
+              </button>
+            </div>
+            <div className='col-span-1 my-auto'>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.back();
+                }}
+                className='w-full rounded-md bg-purple-700 p-3 text-lg font-bold text-purple-200 hover:bg-purple-800 focus:outline-none focus:ring focus:ring-purple-400'
+              >
+                Cancel
+              </button>
+            </div>
           </div>
-          <div className='col-span-1 my-auto'>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                window.history.back();
-              }}
-              className='mr-[5%] w-11/12 rounded-md border-b-[5px] border-r-4 border-b-[#95AFBA] border-r-[#95AFBA] bg-[#EF4444] p-2 py-8 text-2xl'
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

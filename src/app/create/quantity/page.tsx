@@ -20,77 +20,91 @@ export default function CreateQuantityPage() {
     router.push('/create/planned');
   };
   return (
-    <div className='flex h-full flex-col'>
+    <div className='flex h-screen flex-col bg-gradient-to-bl from-purple-600 to-purple-800'>
       <CreateBanner
         src={'/quantity.svg'}
         color={'bg-[#EF4444]'}
         backgroundColor={'border-b-red-900 border-b-4'}
         text={'New Weigh It Streak'}
       />
-      <form onSubmit={handleSubmit} className='mx-auto size-full'>
-        <div className='grid h-full grid-cols-2 grid-rows-5 gap-10 py-5'>
-          {/* Holds the userId for the streak to record it*/}
+      <div className='mx-auto flex h-full flex-col p-4 sm:w-full md:w-3/4 lg:w-1/2'>
+        <form
+          onSubmit={handleSubmit}
+          className='flex h-full flex-col gap-6 rounded-lg bg-purple-900 p-6 shadow-lg'
+        >
           <input type='hidden' name='userId' value={userId} />
           <input type='hidden' name='type' value={'quantity'} />
-          {/* Holds the name of the streak */}
-          <div className='col-span-2 row-span-1 m-auto flex w-11/12 flex-col'>
-            <label htmlFor='name' className='text-3xl'>
+
+          {/* Hidden Inputs */}
+
+          {/* Name Input */}
+          <div className='flex flex-col gap-2'>
+            <label
+              htmlFor='name'
+              className='text-xl font-semibold text-purple-200'
+            >
               Name your Streak
             </label>
             <input
               type='text'
               name='name'
-              className='rounded-md p-5 text-3xl text-black shadow-lg'
+              className='rounded-md border border-purple-700 bg-purple-800 p-3 text-lg text-purple-200 shadow-sm focus:outline-none focus:ring focus:ring-purple-500'
             />
           </div>
 
-          <div className='col-span-2 row-span-1 m-auto flex w-11/12 flex-col'>
-            <label htmlFor='unit' className='text-3xl'>
-              Unit of Measurement
+          {/* Unit of Measurement Input */}
+          <div className='flex flex-col gap-2'>
+            <label
+              htmlFor='unit'
+              className='text-xl font-semibold text-purple-200'
+            >
+              Counted Item Name
             </label>
             <input
               type='text'
               name='unit'
-              className='rounded-md p-5 text-3xl text-black shadow-lg'
+              className='rounded-md border border-purple-700 bg-purple-800 p-3 text-lg text-purple-200 shadow-sm focus:outline-none focus:ring focus:ring-purple-500'
             />
           </div>
 
-          <div className='col-span-2 row-span-2 m-auto flex w-11/12 flex-col'>
-            <label htmlFor='goal' className='text-3xl'>
+          {/* Goal Textarea */}
+          <div className='flex flex-col gap-2'>
+            <label
+              htmlFor='goal'
+              className='text-xl font-semibold text-purple-200'
+            >
               Record your Goal
             </label>
             <textarea
               name='goal'
-              rows={5}
+              rows={4}
               minLength={1}
               maxLength={64}
               defaultValue={''}
-              className='my-auto rounded-md text-3xl text-black shadow-lg'
-              style={{ resize: 'none' }}
+              className='resize-none rounded-md border border-purple-700 bg-purple-800 p-3 text-lg text-purple-200 shadow-sm focus:outline-none focus:ring focus:ring-purple-500'
             />
           </div>
 
-          <div className='col-span-1 my-auto'>
+          {/* Buttons */}
+          <div className='grid grid-cols-2 gap-4'>
             <button
               type='submit'
-              className='ml-[5%] w-11/12 rounded-md border-b-[5px] border-r-4 border-b-[#95AFBA] border-r-[#95AFBA] bg-green-500 p-2 py-8 text-2xl'
+              className='rounded-md bg-[#C084FC] p-3 text-lg font-bold text-purple-900 hover:bg-purple-700 focus:outline-none focus:ring focus:ring-purple-400'
             >
-              Start Streak
+              Start It
             </button>
-          </div>
-          <div className='col-span-1 my-auto'>
             <button
               onClick={(e) => {
                 e.preventDefault();
                 window.history.back();
               }}
-              className='mr-[5%] w-11/12 rounded-md border-b-[5px] border-r-4 border-b-[#95AFBA] border-r-[#95AFBA] bg-[#EF4444] p-2 py-8 text-2xl'
+              className='rounded-md bg-purple-700 p-3 text-lg font-bold text-purple-200 hover:bg-purple-800 focus:outline-none focus:ring focus:ring-purple-400'
             >
               Cancel
             </button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
